@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>RCOS Database Workshop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/dist/reset.css" />
+    <link rel="stylesheet" href="/dist/reveal.css" />
+    <link rel="stylesheet" href="/dist/theme/black.css" id="theme" />
+    <style>
+        :root {
+            --rcos-red: #da291c;
+            --rcos-grey: #707372;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-color="var(--rcos-red)">
+                <img src="https://raw.githubusercontent.com/rcos/rcos-branding/master/img/lockup-white.png"
+                    alt="RCOS white lockup" />
+                <h2 class="fragment">The RCOS Database Workshop</h2>
+            </section>
+
+            <section>
+                <section>
+                    <h1>Agenda</h1>
+                    <ul>
+                        <li>Why</li>
+                        <li>What</li>
+                        <li>Examples</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Recording</h3>
+                    <p>
+                        A recording will be available and posted after the live workshop.
+                        Keep an eye on the RCOS Discord for the link!
+                    </p>
+                </section>
+            </section>
+
+            <section>
+                <h1>Let's get started</h1>
+            </section>
+
+            <section data-background-color="var(--rcos-red)">
+                <section data-background-image="https://media.giphy.com/media/l0K4lUxBzIOeJd1EA/giphy.gif">
+                    <h2>In the beginning...</h2>
+                    <h2 class="fragment">RCOS was Anarchy</h2>
+
+                    <aside class="notes">
+                        It still is, but it also was in the beginning.
+                    </aside>
+                </section>
+                <section>
+                    <p>RCOS grew and grew and grew and grew.</p>
+                    <p class="fragment">
+                        There needed to be a way to manage the increasingly large
+                        organization.
+                    </p>
+                    <aside class="notes">
+                        Instead of getting less crazy, RCOS grew and grew and grew. This
+                        is, of course, because it is the greatest organization on campus.
+                    </aside>
+                </section>
+                <section>
+                    <p>
+                        RCOS leadership eventually created a public website for RCOS that
+                        also tried to organize some of our data.
+                    </p>
+                    <p class="fragment"><strong>Observatory</strong> was born.</p>
+                    <p class="fragment">
+                        This is what you see at
+                        <a target="_blank" href="https://rcos.io">rcos.io</a>
+                    </p>
+                </section>
+                <section>
+                    <p>
+                        RCOS leadership created a Google Drive folder to store slideshows,
+                        forms, documents, etc. organized by semester.
+                    </p>
+                    <img src="images/rcos_google_drive.png" alt="RCOS Google Drive past folder" />
+                </section>
+                <section>
+                    <p>
+                        At some point Submitty also came along to manage attendance and
+                        status updates.
+                    </p>
+                    <img src="images/rcos_submitty.png" alt="RCOS Submitty status update gradeable" />
+
+                    <aside class="notes">
+                        🤢 Submitty made some things easier... and other things harder...
+                    </aside>
+                </section>
+                <section>
+                    <h1>Problem 1</h1>
+                    <p>
+                        School clubs/organizations have a high turnover rate as students
+                        graduate right as they're finally getting experienced with their
+                        positions.
+                    </p>
+                    <aside class="notes">
+                        This is unlike a workplace where you can come in, get trained by
+                        experienced members, have the torch passed off to you, and
+                        eventually do the same thing for new members down the line.
+                    </aside>
+                </section>
+                <section>
+                    <h1>Problem 2</h1>
+                    <p>RPI is exhausting.</p>
+                    <aside class="notes">
+                        This has an effect on everything we try to do with RCOS. RCOS is
+                        usually one of many courses eating up our time and energy.
+                    </aside>
+                </section>
+                <section>
+                    <h1>Result</h1>
+                    <p>
+                        RCOS ended up with disorganized, unstandardized data spread across
+                        Google Drive, multiple different versions of Observatories, and
+                        Submitty over the years.
+                    </p>
+                    <aside class="notes">
+                        Despite our best efforts, we get through the semester by the skin
+                        of our teeth sometimes and don't usually have much time to sit
+                        down and spend time and resources tweaking things to work better.
+                    </aside>
+                </section>
+                <section>
+                    <h1>So What?</h1>
+                    <p>
+                        Well, with this setup we can't easily answer these simple
+                        questions
+                    </p>
+                    <ul>
+                        <li>How many students have taken RCOS in total?</li>
+                        <li>
+                            How many students are taking RCOS for credit this semester?
+                        </li>
+                        <li>How many students are new to RCOS this semester?</li>
+                        <li>Who started what project and when?</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>Who was on a project a particular semester?</li>
+                        <li>
+                            What's the total (+bonus) attendances for a particular member
+                            this semester?
+                        </li>
+                        <li>What projects should be matched with mentors?</li>
+                        <li>What projects should be grouped together?</li>
+                        <li>And many, many more...</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Overall</h1>
+                    <p>
+                        RCOS leadership ends up spending each semester wrangling with the
+                        spread out information instead of being able to actively help out
+                        members and mentors.
+                    </p>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="/dist/reveal.js"></script>
+    <script src="/plugin/notes/notes.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealNotes],
+        });
+    </script>
+</body>
+
+</html>
