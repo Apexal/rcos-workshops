@@ -56,8 +56,9 @@
 
                 <section data-background-color="var(--rcos-red)">
                     <h3>Open Source</h3>
-                    <p>This presentation is <strong>open-source</strong>. It is written in plain HTML using the Revealjs framework!</p>
-                    
+                    <p>This presentation is <strong>open-source</strong>. It is written in plain HTML using the Revealjs
+                        framework!</p>
+
                     <em class="fragment" data-fragment-index="1">Here's the code for the previous slide:</em>
                     <pre class="fragment" data-fragment-index="1"><code data-trim class="html">
                         <script type="text/template">
@@ -70,7 +71,8 @@
                             </section>
                         </script>
                     </code></pre>
-                    <p class="fragment">The source code for my workshops can be found at <a target="_blank" href="https://github.com/Apexal/rcos-workshops">Apexal/rcos-workshops</a></p>
+                    <p class="fragment">The source code for my workshops can be found at <a target="_blank"
+                            href="https://github.com/Apexal/rcos-workshops">Apexal/rcos-workshops</a></p>
                 </section>
             </section>
 
@@ -230,7 +232,6 @@
                     data-background-image="https://media.giphy.com/media/VqolM3FjC14mLL9W9z/giphy.gif"
                     data-background-size="30%">
                     <h1>We Had A Vision</h1>
-                    <p class="fragment">In reality... I took a relational database course...</p>
 
                     <aside class="notes">What if... ALL of our RCOS data could be centralized in one place. What if that
                         data which is all interrelated could recognize the relationships between the data.
@@ -266,6 +267,13 @@
                 <section>
                     <h3>Tables</h3>
                     <img src="images/semesters_table.png" alt="Semesters table">
+                </section>
+                <section>
+                    <h3>Relationships</h3>
+                    <p>The main advantage of relational databases is that you can define direct relationships between
+                        different tables!</p>
+                    <img class="fragment" src="images/table_foreign_key.png" alt="">
+                    <em class="fragment">Every meeting must have a <code>semester_id</code> that matches a record in <code>semesters</code>. A meeting belongs to a semester.</em>
                 </section>
                 <section>
                     <h3>Queries</h3>
