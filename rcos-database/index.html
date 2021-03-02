@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../dist/reset.css" />
     <link rel="stylesheet" href="../dist/reveal.css" />
     <link rel="stylesheet" href="../dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
     <style>
         :root {
             --rcos-red: #da291c;
@@ -255,6 +256,85 @@
                     the days of not knowing if a student who hasn't submitted any status updates is doing RCOS for
                     credit or not!
                 </aside>
+            </section>
+
+            <section>
+                <section>
+                    <h3>Extremely Brief and Incomplete Relational Database Crash Course</h3>
+                </section>
+
+                <section>
+                    <h3>Tables</h3>
+                    <img src="images/semesters_table.png" alt="Semesters table">
+                </section>
+                <section>
+                    <h3>Queries</h3>
+                    We can execute queries that create, read, update, and destroy data!
+                    <pre><code data-trim class="sql">
+                        -- Insert a record into the semesters table
+                        INSERT INTO semesters ('202101', 'Spring 2021', '2021-01-01', '2021-01-01');
+                        
+                        -- Get all semesters with just their ID and title
+                        SELECT semester_id, title FROM semesters;
+
+                        -- Update a record
+                        UPDATE semesters SET title = 'Windy Semester' WHERE semester_id = '202101';
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>So What??</h3>
+                    <p>This relatively simple query...</p>
+                    <pre><code data-trim>
+                        select
+                            p.project_id,
+                            eo.title as external_organization,
+                            p.title as project_title,
+                            p.stack as project_stack,
+                            count(e) as team_size
+                        from
+                            projects p
+                        join enrollments e on
+                            p.project_id = e.project_id
+                        left outer join external_organizations eo on
+                            p.external_organization_id = eo.external_organization_id
+                        where
+                            e.semester_id = '202101'
+                        group by
+                            eo.title,
+                            p.project_id
+                        order by
+                            p.title;
+                    </code></pre>
+                </section>
+                <section>
+                    <p>Gives us this instantly!</p>
+                    <img src="images/query_results.png" alt="">
+                </section>
+                <section>
+                    <p>With another simple query we get all users this semester with their associated info.</p>
+                    <pre><code data-trim>
+                        select
+                            u.first_name,
+                            u.last_name,
+                            e.username,
+                            e.is_project_lead,
+                            p.title,
+                            p.stack
+                        from
+                            enrollments e
+                        join users u on
+                            u.username = e.username
+                        join projects p on
+                            p.project_id = e.project_id
+                        where e.semester_id = '202101'
+                        order by
+                            u.first_name,
+                            u.last_name;
+                    </code></pre>
+                </section>
+                <section>
+                    <img class="r-stretch" src="images/query_results2.png" alt="">
+                </section>
             </section>
         </div>
     </div>
