@@ -56,7 +56,8 @@
 
                 <section data-background-color="var(--rcos-red)">
                     <h3>Open Source</h3>
-                    <p>This presentation is <strong>open-source</strong>. It is written in plain HTML using the Revealjs
+                    <p>This presentation is <strong>open-source</strong>. It is written in plain HTML using the <a
+                            href="https://revealjs.com/" target="_blank">reveal.js</a>
                         framework!</p>
 
                     <em class="fragment" data-fragment-index="1">Here's the code for the previous slide:</em>
@@ -243,10 +244,18 @@
             </section>
 
             <section>
-                <h1>The RCOS Database</h1>
-                <p>The RCOS Database is only one aspect of a revamp of RCOS infrastructure the Coordinators are taking
-                    up this school year.</p>
-                <p class="fragment">It will serve as the single source of truth for <strong>ALL</strong> RCOS data.</p>
+                <section>
+                    <h1>The RCOS Database</h1>
+                    <p>The RCOS Database is only one aspect of a revamp of RCOS infrastructure the Coordinators are
+                        taking
+                        up this school year.</p>
+                    <p class="fragment">It will serve as the single source of truth for <strong>ALL</strong> RCOS data.
+                    </p>
+                </section>
+
+                <section>
+                    <strong>All of you in this call now are in the RCOS database...</strong>
+                </section>
             </section>
 
             <section data-background-image="images/schema_panover.gif">
@@ -273,7 +282,8 @@
                     <p>The main advantage of relational databases is that you can define direct relationships between
                         different tables!</p>
                     <img class="fragment" src="images/table_foreign_key.png" alt="">
-                    <em class="fragment">Every meeting must have a <code>semester_id</code> that matches a record in <code>semesters</code>. A meeting belongs to a semester.</em>
+                    <em class="fragment">Every meeting must have a <code>semester_id</code> that matches a record in
+                        <code>semesters</code>. A meeting belongs to a semester.</em>
                 </section>
                 <section>
                     <h3>Queries</h3>
@@ -344,8 +354,115 @@
                     <img class="r-stretch" src="images/query_results2.png" alt="">
                 </section>
             </section>
-            
-            <!-- TODO: Show general tables to give an idea of what data is stored in the database -->
+
+            <section>
+                <section>
+                    <h1>What Is Stored?</h1>
+                    <p>A brief look at important parts of the schema</p>
+                </section>
+
+                <section>
+                    <h2>Users</h2>
+                    <p>The <code>users</code> table stores students, faculty, and external users.</p>
+                    <img src="images/users_table.png" alt="Users table">
+                </section>
+
+                <section>
+                    <h2>Projects</h2>
+                    <p>The <code>projects</code> table stores project data that doesn't depend on a specific semester.
+                    </p>
+                    <img src="images/projects_table.png" alt="Projects table">
+                </section>
+
+                <section>
+                    <h2>Enrollments</h2>
+                    <p>The <code>enrollments</code> table stores enrollments for each semester. This is probably the
+                        most important table.</p>
+                    <img src="images/enrollments_table.png" alt="Enrollments table">
+
+                    <aside class="notes">
+                        So much of RCOS data changes with each semester. It is vital that we can query our data for
+                        specific semesters. The enrollments table lets us do this!
+                        This is where we store what users are on what project, how many credits students are taking RCOS
+                        for, who is a project lead for their project, and overall grading.
+
+                        Think about how much of an improvement this is on past systems. Now instantly we can ask
+                        questions like "Who was enrolled in RCOS last semester for credit on the OpenCircuits project?"
+                        or
+                        "Who was the project lead of YACS in Spring 2021?" These questions previously either couldn't be
+                        answered at all or would have taken a lot of manual effort to figure out.
+
+                        Many other tables in the database depend upon enrollments. It is definitely my favorite table :)
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Meetings</h2>
+                    <p>The <code>meetings</code> table stores all meetings each semester with different types and
+                        properties that define how they are displayed on frontends.</p>
+                    <img class="r-stretch" src="images/meetings_table.png" alt="Meetings table">
+
+                    <aside class="notes">
+                        The meetings table is what powers the RCOS Calendar in the Handbook. As you can see, meetings
+                        are related to semesters and also possibly users if a specific user is hosting the meeting.
+                        Meetings can be remote or in person, have agendas defined, and either be public or hidden! What
+                        you see on the Calendar is a subset of meetings where <code>is_public = true</code>.
+
+                        This is how we plan on making automated meeting reminders. We simply need a script that runs
+                        periodically, checks if there are any meetings in the next 10 minutes, and sends a Discord
+                        webhook announcing them.
+                        The hard part is hosting it properly somewhere stable.
+
+                        If you look closely you might see the <code>presentation_markdown</code> column/field. In the
+                        future, RCOS slides can be automatically generated based on the meeting type, agenda, and
+                        markdown content all stored in the database record.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Chat Associations</h2>
+                    <p>The <code>chat_associations</code> table powers the RCOS Discord server. It lets us connect a
+                        project to a text channel, for example.</p>
+                    <img src="images/chat_assocations_table.png" alt="Chat associations table">
+                    <br>
+                    <img src="images/discord_role_chat_association.png" alt="Example chat association record">
+
+                    <aside class="notes">
+                        This tiny table is super powerful. This stores associations between chat
+                        entities like Discord roles, text channels, voice channels, categories, etc. with RCOS entities
+                        like projects and small groups.
+
+                        This is how all of the roles assigned to you are in this database. To find the role for QuACS,
+                        we simply query this table for the role ID.
+                        We can even change the names of roles or channels with no trouble since their unique, immutable
+                        ID is stored in the database.
+                    </aside>
+                </section>
+
+                <section data-background-color="var(--rcos-red)">
+                    <h2>What Else is Stored?</h2>
+                    <ul>
+                        <li>Semesters</li>
+                        <li>Small groups</li>
+                        <li>User accounts</li>
+                        <li>Status updates*</li>
+                        <li>Meeting attendance*</li>
+                        <li>Workshop proposals*</li>
+                        <li>Mentor proposals*</li>
+                        <li>And more!</li>
+                    </ul>
+                    <p class="fragment">You can view a mostly accurate visualization of the schema <a target="_blank"
+                            href="https://dbdiagram.io/d/5f6e22a87da1ea736e2f60af">here</a>!</p>
+
+                    <aside class="notes">
+                        The RCOS database must be future proof. As a result, it supports a variety of useful things that
+                        we currently aren't using yet. One day, the database will store meeting attendance without
+                        Submitty, status updates, all grading and comments, and so much more.
+                        Hopefully in the year 3021 we'll be so organized that all RCOS members have to do is commit and
+                        push.
+                    </aside>
+                </section>
+            </section>
 
             <section>
                 <section>
@@ -359,9 +476,45 @@
                     <h3>Discord Bot</h3>
                     <img src="images/bot_flowchart.png" alt="">
                 </section>
+
+                <section>
+                    <h3>Telescope</h3>
+                    <p>
+                        Future versions of Observatory will no longer have their own separate database. All RCOS
+                        infrastructure will read and write from the RCOS database.
+                    </p>
+                    <strong class="fragment">This means that even if a piece of infrastructure is abandoned, our data
+                        lives on.</strong>
+
+                    <aside class="notes">
+                        This was the real motivating goal behind the database. Telescope, the CAS portal, the Discord
+                        bot, all become dummy clients on top of the database. This makes them easy to develop and
+                        maintain, and lets us recover easily if they need to be scraped and rewritten.
+                    </aside>
+                </section>
             </section>
 
-            <!-- TODO: Conclusion -->
+            <section>
+                <section>
+                    <h1>Conclusion</h1>
+                    <ul>
+                        <li class="fragment">Our data was disorganized</li>
+                        <li class="fragment">The database aims to store ALL RCOS data</li>
+                        <li class="fragment">RCOS infrastructure will use it for the central source of data</li>
+                        <li class="fragment">More time for leadership to participate in the community</li>
+                    </ul>
+                </section>
+
+                <section data-background-color="var(--rcos-red)">
+                    <h1>Thanks for coming to my Ted Talk</h1>
+                </section>
+
+                <section>
+                    <h1>Questions?</h1>
+
+                    <img class="r-stretch" src="https://media.giphy.com/media/l1PDufxlGy27yNP6nE/giphy.gif" alt="Question mark gif">
+                </section>
+            </section>
         </div>
     </div>
 
