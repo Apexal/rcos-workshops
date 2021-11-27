@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>RCOS Deploying on Heroku Workshop</title>
+    <meta name="description" content="A workshop covering how to deploy web apps on Heroku for free.">
+    <meta name="author" content="Frank Matranga '22 (matraf)">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../dist/reset.css" />
+    <link rel="stylesheet" href="../dist/reveal.css" />
+    <link rel="stylesheet" href="../dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css" id="highlight-theme">
+    <style>
+        :root {
+            --rcos-red: #da291c;
+            --rcos-grey: #707372;
+        }
+
+        .text-rcos-red {
+            color: var(--rcos-red) !important;
+        }
+
+        .text-black {
+            color: black !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-color="var(--rcos-red)">
+                <img src="https://raw.githubusercontent.com/rcos/rcos-branding/master/img/lockup-white.png"
+                    alt="RCOS white lockup" />
+                <h2 class="fragment">Deploying on Heroku Workshop</h2>
+            </section>
+
+            <section>
+                <section>
+                    <h1>Agenda</h1>
+                    <ul>
+                        <li>What is Heroku?</li>
+                        <li>Creating a free Heroku account</li>
+                        <li>Configuring your app for Heroku</li>
+                        <li>Deploying and managing on Heroku</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Recording</h3>
+                    <p>
+                        A recording will be available and posted after the live workshop.
+                        Keep an eye on the RCOS Discord for the link!
+                    </p>
+                </section>
+
+                <section data-background-color="var(--rcos-red)">
+                    <h3>Open Source</h3>
+                    <p>This presentation is <strong>open-source</strong>. It is written in plain HTML using the <a
+                            href="https://revealjs.com/" target="_blank">reveal.js</a>
+                        framework!</p>
+
+                    <em class="fragment" data-fragment-index="1">Here's the code for the previous slide:</em>
+                    <pre class="fragment" data-fragment-index="1"><code data-trim class="html">
+                        <script type="text/template">
+                            <section>
+                                <h3>Recording</h3>
+                                <p>
+                                    A recording will be available and posted after the live workshop.
+                                    Keep an eye on the RCOS Discord for the link!
+                                </p>
+                            </section>
+                        </script>
+                    </code></pre>
+                    <p class="fragment">The source code for my workshops can be found at <a target="_blank"
+                            href="https://github.com/Apexal/rcos-workshops">Apexal/rcos-workshops</a></p>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealNotes, RevealHighlight],
+        });
+    </script>
+</body>
+
+</html>
