@@ -41,6 +41,7 @@
                 <section>
                     <h1>Agenda</h1>
                     <ul>
+                        <li>What is deployment?</li>
                         <li>What is Heroku?</li>
                         <li>Creating a free Heroku account</li>
                         <li>Configuring your app for Heroku</li>
@@ -77,11 +78,17 @@
                             href="https://github.com/Apexal/rcos-workshops">Apexal/rcos-workshops</a></p>
                 </section>
             </section>
+
+            <section>
+                <h2>What is deployment?</h2>
+                <p>For <em>web apps in particular</em>, it is the process of installing, configuring, and enabling an application to a specific URL on a server that is publicly accessible.</p>
+                <p class="fragment">Going from <code>https://localhost:8080</code> to <code>https://late.work</code></p>
+            </section>
             
             <section data-background-color="#79589F">
                 <section>
-                    <h2>Part 1: What is Heroku?</h2>
-                    <img height="400" src="https://media3.giphy.com/media/9Daw0eNNSE0e9WM2lI/giphy.gif?cid=790b7611ac0d70e7ee1aacd07e691b990c39c860768e9d00&rid=giphy.gif&ct=s" alt="Animated question mark">
+                    <h2>What is Heroku?</h2>
+                    <img height="300" src="https://brand.heroku.com/static/media/heroku-logo-stroke-white.e83b4856.svg" alt="Heroku logo">
                 </section>
 
                 <section>
@@ -94,7 +101,7 @@
 
                 <section>
                     <h2>tl;dr</h2>
-                    <p>Instead of running and managing a server to try to run your webapps manually, Heroku lets you hand off the code to them and they handle all of the hard parts.</p>
+                    <p>Instead of attempting to deploy a web app manually, Heroku lets you hand off the code to them and they handle all of the hard parts, resulting in a public URL for your app.</p>
                 </section>
 
                 <section>
@@ -107,7 +114,7 @@
 
             <section>
                 <section>
-                    <h2>Part 2: Configuring App for Heroku</h2>
+                    <h2>Configuring App for Heroku</h2>
                 </section>
 
                 <section>
@@ -128,6 +135,12 @@
                 </section>
 
                 <section>
+                    <h2>Host Project on GitHub</h2>
+                    <p>Make sure your project is a git repository on GitHub!</p>
+                    <p class="fragment">Our sample Flask app can be forked at <a href="https://github.com/Apexal/sample-app">https://github.com/Apexal/sample-app</a></p>
+                </section>
+
+                <section>
                     <h2>What does Heroku need to know about the web app?</h2>
                     <ul>
                         <li class="fragment"><strike>language</strike> <strong>automatically determined</strong></li>
@@ -135,11 +148,56 @@
                         <li class="fragment">start command</li>
                     </ul>
                 </section>
+
+                <section>
+                    <h2>Specifying Dependencies</h2>
+                    <p>For Python projects, either create a <code>requirements.txt</code></p>
+                    <p class="fragment">OR</p>
+                    <p class="fragment">Use a tool like <code>pipenv</code>!</p>
+                </section>
+
+                <section>
+                    <h2>Specifying Start Command</h2>
+                    <p>Create a textfile named <code>Procfile</code> in the project folder and enter the following:</p>
+                    <pre><code class="bash" data-trim>
+                        web: &lt;start command here&gt;
+                    </code></pre>
+                    <p class="fragment">For the example Flask app:</p>
+                    <pre class="fragment"><code class="bash" data-trim>
+                        web: gunicorn main:app
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Create Heroku App</h2>
+                    <p>
+                        <a href="https://dashboard.heroku.com/new-app">https://dashboard.heroku.com/new-app</a>
+                    </p>
+                </section>
+
+                <section data-background-color="var(--rcos-red)">
+                    <h2>Connect to GitHub and Deploy!</h2>
+                </section>
+            </section>
+
+            <section>
+                <h2>Future Steps</h2>
+                <ul>
+                    <li>Install and use Heroku CLI</li>
+                    <li>
+                        Explore free Heroku addons
+                        <ul>
+                            <li>Especially free Postgres database!</li>
+                        </ul>
+                    </li>
+                    
+                </ul>
             </section>
 
             <section>
                 <h2>Further Reading</h2>
                 <ul>
+                    <li><a href="https://devcenter.heroku.com/articles/getting-started-with-python">https://devcenter.heroku.com/articles/getting-started-with-python</a></li>
                     <li><a href="https://stackabuse.com/deploying-a-flask-application-to-heroku/">https://stackabuse.com/deploying-a-flask-application-to-heroku/</a></li>
                 </ul>
             </section>
